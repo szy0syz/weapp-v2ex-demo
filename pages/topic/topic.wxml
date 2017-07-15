@@ -1,0 +1,21 @@
+<scroll-view scroll-y style="height: 100%;">
+  <view class="container">
+
+    <view wx:for="{{latest}}" wx:key="{{id}}">
+      <view class="topic" id="{{item.id}}" bindtap="toDetail">
+        <view class="userInfo">
+          <image src="{{item.member.avatar_normal}}" style="height:30px;width:30px;"></image>
+          <text>{{item.member.username}}</text>
+        </view>
+        <view class="topicTitle">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="footerInfo">
+          <text>{{item.replies}}条回复</text>
+          <text>{{item.node.title}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

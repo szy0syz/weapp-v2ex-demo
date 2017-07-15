@@ -1,0 +1,26 @@
+<view class="container">
+  <view bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatar_large}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.username}}</text>
+  </view>
+</view>
+
+<!-- <view>
+  <scroll-view>
+    <view wx:for="{{hot}}" wx:key="{{id}}">
+      <view class="topic" id="{{item.id}}" bindtap="toDetail">
+        <view class="userInfo">
+          <image src="{{item.member.avatar_normal}}" style="height:30px;width:30px;"></image>
+          <text>{{item.member.username}}</text>
+        </view>
+        <view class="topicTitle">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="footerInfo">
+          <text>{{item.replies}}条回复</text>
+          <text>{{item.node.title}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view> -->

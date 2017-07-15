@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="topic">
+    <view class="title">
+      <text>{{topic_data.title}}</text>
+    </view>
+    <view class="userInfo">
+      <image src="{{topic_data.member.avatar_normal}}"></image>
+      <text class="userInfo_username">{{topic_data.member.username}}</text>
+      <text class="topic_created">  于 {{topic_created}} 创建</text> 
+    </view>
+    <view class="content">
+      <text>{{topic_data.content}}</text>
+    </view>
+    <view class="footerInfo">
+      <text>{{topic_data.replies}}条回复</text>
+      <text>{{topic_data.node.title}}</text>
+    </view>
+  </view>
+
+  <scroll-view wx:for="{{topic_relies}}">
+    <view class="replies">
+      <view class="replies_info">
+        <view class="userInfo">
+          <image src="{{item.member.avatar_normal}}"></image>
+          <text class="userInfo_username">{{item.member.username}}</text>
+          <text class="topic_created">  于 {{item.created}} 回复</text> 
+        </view>
+        <view class="rely_detal">
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
