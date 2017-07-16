@@ -15,16 +15,22 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "最热主题"
+        "text": "首页",
+        "iconPath": "/static/images/index.png",
+        "selectedIconPath": "/static/images/index_selected.png"
       },
       {
         "pagePath": "pages/topic/topic",
-        "text": "主题列表"
+        "text": "列表",
+        "iconPath": "/static/images/list.png",
+        "selectedIconPath": "/static/images/list_selected.png"
       }
       ,
       {
         "pagePath": "pages/user/user",
-        "text": "用户信息"
+        "text": "用户",
+        "iconPath": "/static/images/contact.png",
+        "selectedIconPath": "/static/images/contact_selected.png"
       }
     ]
   },
