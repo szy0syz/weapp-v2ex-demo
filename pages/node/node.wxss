@@ -1,22 +1,5 @@
-/* .out{
-  display:flex;
-  flex-flow: wrap;
-  width: 100%;
-  justify-content: center;
-   align-content: center; 
-}
-.inner{
-  background: gold;
-  border: 1px dashed red;
-  height: 40px;
-  width: 40px;
-} */
-
-body,html{height:100%;}
-
 .mypage{
   height:100%;
-  border: 1px dashed red;
 }
 
 .container {
@@ -27,7 +10,6 @@ body,html{height:100%;}
   justify-content: center;
   align-content: center; 
   height: 100%;
-  border: 1px dashed greenyellow;
 }
 
 .node {
@@ -36,9 +18,10 @@ body,html{height:100%;}
   align-items: center; 
   justify-content: center;
   border: 1px solid gray;
-  height: 50px;
+  height: 40px;
   padding-left: 4px;
   padding-right: 4px;
+  margin: 5px 3px 5px 3px;
 }
 
 .node_title {
