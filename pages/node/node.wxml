@@ -1,0 +1,14 @@
+<!-- <view class="out">
+  <view wx:for="{{nodes}}" wx:key="id" class="inner">
+  </view>
+</view> -->
+<view class="mypage">
+  <scroll-view style="height:100%;">
+    <view class="container">
+      <view class="node" wx:for="{{nodes}}" wx:key="id">
+        <text class="node_title">{{item.title}}</text>
+        <text class="node_sum">主题总数{{item.topics}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

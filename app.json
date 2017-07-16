@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/node/node",
     "pages/index/index",
     "pages/detail/detail",
     "pages/user/user",
@@ -24,11 +25,10 @@
         "text": "列表",
         "iconPath": "/static/images/list.png",
         "selectedIconPath": "/static/images/list_selected.png"
-      }
-      ,
+      },
       {
-        "pagePath": "pages/user/user",
-        "text": "用户",
+        "pagePath": "pages/node/node",
+        "text": "节点",
         "iconPath": "/static/images/contact.png",
         "selectedIconPath": "/static/images/contact_selected.png"
       }
