@@ -1,21 +1,94 @@
 /**index.wxss**/
-.userinfo {
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.userinfo-avatar {
+.profile-avatar {
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
 
-.userinfo-nickname {
+.profile-nickname {
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.topic{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100%;
+  /* border: 1px solid #000;   */
+}
+.topic::after{
+  content: "";
+  width: 100%;
+  height: 6px;
+  background: #EFEFF3;
+}
+
+.userInfo{
+  margin-top: 10px;
+  margin-left: 6px;
+  top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  color: #576b95;
+  width: 96%;
+  /* border: 1px solid #000; */
+}
+
+.userInfo text{
+  margin-left: 4px;
+}
+
+.footerInfo{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.topicTitle{
+  margin-top: 6px;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 98%;
+  height: 90px;
+  /*实现文字溢出后出现台阶*/
+  overflow: hidden;
+  /*文字超出的拆切部分以'...'代表*/
+  text-overflow: ellipsis;
+  /* white-space: ; */
+}
+
+.topicTitle text{
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.footerInfo{
+  position: absolute;
+  bottom: 1px; /*加了伪类，得重新计算了*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 20px;
+  line-height: 16px;
+  font-size: 13px;
+  color: #888888;
+  /* border: 1px solid #000;   */
 }

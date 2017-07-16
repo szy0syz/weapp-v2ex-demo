@@ -287,12 +287,17 @@ Page({
     ]
   },
   onLoad: function () {
-    var _this = this;
 
   },
   toDetail: function (e) {
     wx.navigateTo({
       url: '../detail/detail?id=' + e.currentTarget.id,
+    })
+  },
+  toProfile: function (e) {
+    console.log("profile")
+    wx.switchTab({
+      url: '../user/user?username=' + e.currentTarget.id,
     })
   }
 })

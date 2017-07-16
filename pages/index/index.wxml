@@ -2,12 +2,12 @@
   <view class="container">
 
     <view wx:for="{{hot}}" wx:key="{{id}}">
-      <view class="topic" id="{{item.id}}" bindtap="toDetail">
-        <view class="userInfo">
+      <view class="topic">
+        <view class="userInfo" id="{{item.member.username}}" bindtap="toProfile">
           <image src="{{item.member.avatar_normal}}" style="height:30px;width:30px;"></image>
           <text>{{item.member.username}}</text>
         </view>
-        <view class="topicTitle">
+        <view class="topicTitle" id="{{item.id}}" bindtap="toDetail">
           <text>{{item.title}}</text>
         </view>
         <view class="footerInfo">
