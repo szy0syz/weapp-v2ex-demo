@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nodes:[]
+    nodes:[],
+    isFinished: false
   },
 
   /**
@@ -54,23 +55,29 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.isFinished) return
+    
     var amount = this.data.nodes.length
     var ary = [], index = 0
     for (var i = 0, len=this.nodeData.length; i< 20; i++) {
       index = amount + i
       if (index >= len) {
+        wx.showToast({
+          title: '已经加载完毕',
+          icon: 'success',
+          duration: 2000
+        })
+        this.setData({ isFinished: true}) // 设置flag，不再触发上拉触底事件
         break;
       }
       ary.push(this.nodeData[index])
     }
     index = null
-    ary = this.data.nodes.concat(ary)
+    ary = this.data.nodes.concat(ary) // 有多少加多少
     this.setData({ nodes: ary})
   },
   nodeData: 
   [
-
     {
       "id": 1,
       "name": "babel",
