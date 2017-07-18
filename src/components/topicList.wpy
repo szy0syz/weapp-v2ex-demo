@@ -1,23 +1,43 @@
-<style>
-  .list{
-      
+<style lang="less">
+  .list {
   }
 </style>
 <template>
   <view class="list">
 
-  </view>
+    <view wx:for="{{topics}}" wx:key="{{id}}">
+      <view class="topic">
+        <view class="userInfo" id="{{item.member.username}}" bindtap="toProfile">
+          <image src="{{item.member.avatar_normal}}" style="height:30px;width:30px;"></image>
+          <text>{{item.member.username}}</text>
+        </view>
+        <view class="topicTitle" id="{{item.id}}" bindtap="toDetail">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="footerInfo">
+          <text>{{item.replies}}条回复</text>
+          <text>{{item.node.title}}</text>
+        </view>
+      </view>
+    </view>
+
+  // <view>
+  //   <button @tap="add" size="mini">添加列表</button>
+  // </view>
+  //   <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+  //     <view @tap="tap" class="mylist">
+  //       <text>{{item.id}}</text>: {{item.title}}
+  //     </view>
+  //   </block>
+  // </view>
 </template>
 <script>
+  let util = require('../libs/utils')
   import wepy from 'wepy'
 
   export default class List extends wepy.component {
     data = {
-      list: [
-        {
-          id: '0',
-          title: 'loading'
-        }
+      topics: [
       ]
     }
 
@@ -40,6 +60,13 @@
     }
 
     onLoad () {
+      util.getRequestData({
+        url: 'https://www.v2ex.com/api/topics/hot.json',
+        cb: (res) => {
+          this.topics = res.data
+          this.$apply() // 没办法啊，异步空间了，咱手动通知哈view层，数据改变了。
+        }
+      })
     }
   }
 </script>

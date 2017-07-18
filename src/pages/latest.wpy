@@ -19,8 +19,7 @@
     }
 
     data = {
-      mynum: 20,
-      topics: []
+      mynum: 20
     }
 
     methods = {

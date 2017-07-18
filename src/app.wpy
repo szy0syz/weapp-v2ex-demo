@@ -17,7 +17,9 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/hot'
+      'pages/hot',
+      'pages/latest',
+      'pages/node'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -29,18 +31,28 @@ export default class extends wepy.app {
       'list': [
         {
           'pagePath': 'pages/index',
-          'text': '首页'
+          'text': '测试主页'
         },
         {
           'pagePath': 'pages/hot',
           'text': '最热主题'
+        },
+        {
+          'pagePath': 'pages/latest',
+          'text': '主题列表'
+        },
+        {
+          'pagePath': 'pages/node',
+          'text': '所有节点'
         }
       ]
     }
   }
 
   globalData = {
-    userInfo: null
+    userInfo: null,
+    defaultUname: 'szy0syz',
+    baseUrl: 'https://www.v2ex.com/api'
   }
 
   constructor () {
