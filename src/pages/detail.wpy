@@ -33,7 +33,8 @@
     events = {
     }
 
-    onLoad() {
+    onLoad(options) {
+      console.dir(options)
     }
   }
 </script>

@@ -2,20 +2,22 @@
 </style>
 <template>
   <view class="container">
-    <button @tap="toast" size="mini">toast</button>
+    <list></list>
     <toast />
   </view>
 </template>
 <script>
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
+  import TopicList from '../components/topicList'
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: 'test'
     }
     components = {
-      toast: Toast
+      toast: Toast,
+      list: TopicList
     }
 
     data = {
