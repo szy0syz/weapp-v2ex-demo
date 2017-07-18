@@ -171,9 +171,11 @@
           title: '自定义标题',
           img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
         })
-
+        var t = arguments
         promise.then((d) => {
-          console.log('toast done')
+          console.dir(d)
+          console.dir(arguments)
+          console.log(t === arguments)
         })
       },
       tap () {
