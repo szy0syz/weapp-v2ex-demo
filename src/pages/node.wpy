@@ -9,7 +9,7 @@
 <script>
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
-
+  // https://www.v2ex.com/api/nodes/all.json
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: 'test'

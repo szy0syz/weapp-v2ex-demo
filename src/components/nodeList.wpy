@@ -1,0 +1,82 @@
+<style>
+.mypage{
+  height:100%;
+}
+
+.container {
+  display: inline-flex;
+  flex-wrap: wrap; 
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-content: center; 
+  height: 100%;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  border: 1px solid gray;
+  height: 40px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin: 5px 3px 5px 3px;
+}
+
+.node_title {
+  font-size: 13px;
+  color: #888;
+}
+
+.node_sum {
+  font-size: 11px;
+  color: #b2b2b2;
+  margin-top: 3px;
+}
+
+</style>
+
+<template>
+    <view class="mypage">
+    <scroll-view style="height:100%;">
+        <view class="container">
+        <view class="node" wx:for="{{nodes}}" wx:key="id">
+            <text class="node_title">{{item.title}}</text>
+            <text class="node_sum">主题总数{{item.topics}}</text>
+        </view>
+        </view>
+    </scroll-view>
+    </view>
+</template>
+<script>
+  var util = require('../libs/utils')
+  import wepy from 'wepy'
+
+  export default class TopicList extends wepy.component {
+    data = {
+      nodes: []
+    }
+
+    events = {
+    }
+
+    props = {
+      apiUrl: String
+    }
+
+    methods = {
+    }
+
+    onLoad () {
+      util.getRequestData({
+        url: this.apiUrl,
+        cb: (res) => {
+          this.topics = res.data
+          this.$apply()
+        }
+      })
+    }
+  }
+</script>
