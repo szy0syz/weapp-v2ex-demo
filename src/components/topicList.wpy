@@ -104,32 +104,29 @@
 
   export default class TopicList extends wepy.component {
     data = {
-      topics: [
-      ]
+      topics: []
     }
 
     events = {
     }
 
+    props = {
+      detailPage: String,
+      apiUrl: String
+    }
+
     methods = {
-      tap () {
-        // this.num = this.num + 1
-        console.log(this.$name + ' tap')
-      },
-      add () {
-        let len = this.list.length
-        this.list.push({id: len + 1, title: 'title_' + len})
-      },
       toDetail (e) {
         wepy.navigateTo({
-          url: '/pages/detail?id=' + e.currentTarget.id
+          url: this.detailPage + '?id=' + e.currentTarget.id
         })
       }
     }
 
     onLoad () {
+      console.log(this.apiUrl + '******')
       util.getRequestData({
-        url: 'https://www.v2ex.com/api/topics/hot.json',
+        url: this.apiUrl,
         cb: (res) => {
           this.topics = res.data
           this.$apply()
