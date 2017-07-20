@@ -1,2 +1,2 @@
-@import "./../npm/wepy-com-toast/toast.wxss";
+@import "./../components/topicList.wxss";
 
