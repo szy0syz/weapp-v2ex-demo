@@ -11,8 +11,8 @@
   flex-direction: column;
   height: 100px;
   width: 100%;
-  /* border: 1px solid #000;   */
 }
+
 .topic::after{
   content: "";
   width: 100%;
@@ -76,6 +76,7 @@
   /* border: 1px solid #000;   */
 }
 </style>
+
 <template>
   <view class="list">
 
@@ -85,7 +86,7 @@
           <image src="{{item.member.avatar_normal}}" style="height:30px;width:30px;"></image>
           <text>{{item.member.username}}</text>
         </view>
-        <view class="topicTitle" id="{{item.id}}" bindtap="toDetail">
+        <view class="topicTitle" id="{{item.id}}" @tap="toDetail">
           <text>{{item.title}}</text>
         </view>
         <view class="footerInfo">
@@ -94,6 +95,8 @@
         </view>
       </view>
     </view>
+
+  </view>  
 </template>
 <script>
   var util = require('../libs/utils')
@@ -116,6 +119,11 @@
       add () {
         let len = this.list.length
         this.list.push({id: len + 1, title: 'title_' + len})
+      },
+      toDetail (e) {
+        wepy.navigateTo({
+          url: '/pages/detail?id=' + e.currentTarget.id
+        })
       }
     }
 
@@ -124,13 +132,8 @@
         url: 'https://www.v2ex.com/api/topics/hot.json',
         cb: (res) => {
           this.topics = res.data
-          this.$apply() // 没办法啊，异步空间了，咱手动通知哈view层，数据改变了。
+          this.$apply()
         }
-      })
-    }
-    toDetail (e) {
-      wepy.navigateTo({
-        url: '/pages/detail?id=' + e.currentTarget.id
       })
     }
   }

@@ -19,46 +19,8 @@
       </view>
     </view>
 
-<script>
-  var util = require('../libs/utils')
-  import wepy from 'wepy'
+  </view>  
 
-  export default class TopicList extends wepy.component {
-    data = {
-      topics: [
-      ]
-    }
-
-    events = {
-    }
-
-    methods = {
-      tap () {
-        // this.num = this.num + 1
-        console.log(this.$name + ' tap')
-      },
-      add () {
-        let len = this.list.length
-        this.list.push({id: len + 1, title: 'title_' + len})
-      }
-    }
-
-    onLoad () {
-      util.getRequestData({
-        url: 'https://www.v2ex.com/api/topics/hot.json',
-        cb: (res) => {
-          this.topics = res.data
-          this.$apply() // 没办法啊，异步空间了，咱手动通知哈view层，数据改变了。
-        }
-      })
-    }
-    toDetail (e) {
-      wepy.navigateTo({
-        url: '/pages/detail?id=' + e.currentTarget.id
-      })
-    }
-  }
-</script></view>
     
     <view class="wetoast {{$toast$reveal ? 'wetoast_show' : ''}}">
         <view class="wetoast__mask"/>
