@@ -2,7 +2,7 @@
 </style>
 <template>
   <view class="container">
-    <list apiUrl="https://www.v2ex.com/api/topics/hot.json"></list>
+    <list apiUrl="https://www.v2ex.com/api/topics/hot.json" detailPage="detail"></list>
   </view>
 </template>
 <script>
