@@ -22,6 +22,10 @@
     data = {
     }
 
+    tdata = {
+      noReach: false
+    }
+
     methods = {
       toast (e) {
         console.dir(wepy)
@@ -32,14 +36,26 @@
     }
 
     events = {
+      'noReach': (...args) => {
+        this.tdata.noReach = true
+        let promise = this.$invoke('toast', 'show', {
+          title: '全部加载完毕',
+          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+        })
+        promise.then((d) => {
+          this.tdata.isFinished = true // 设置flag，不再触发上拉触底事件
+        })
+      }
     }
 
     onLoad() {
     }
 
     onReachBottom() {
-      console.log('onReachBottom~!!!')
-      this.$broadcast('getMoreNodes')
+      if (!this.tdata.noReach) {
+        console.log('onReachBottom~!!!')
+        this.$broadcast('getMoreNodes', 100)
+      }
     }
   }
 </script>

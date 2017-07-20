@@ -75,17 +75,12 @@
         const amount = this.nodes.length
         let ary = []
         let index = 0
-        for (var i = 0, len = this.tdata.allNodes.length; i < 80; i++) {
+        let loadNum = args[0]
+        for (var i = 0, len = this.tdata.allNodes.length; i < loadNum; i++) {
           index = amount + i
           if (index >= len) {
-            console.log('全部加载完毕')
-            // let promise = this.$invoke('toast', 'show', {
-            //   title: '全部加载完毕',
-            //   img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-            // })
-            // promise.then((d) => {
-            //   this.tdata.isFinished = true // 设置flag，不再触发上拉触底事件
-            // })
+            console.log('全部nodes加载完毕')
+            this.$emit('noReach')
             break
           }
           ary.push(this.tdata.allNodes[index])
