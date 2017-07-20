@@ -39,6 +39,7 @@
 
     onReachBottom() {
       console.log('onReachBottom~!!!')
+      this.$broadcast('getMoreNodes')
     }
   }
 </script>

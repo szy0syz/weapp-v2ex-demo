@@ -64,6 +64,9 @@
     }
 
     events = {
+      'getMoreNodes': (...args) => {
+        // let $event = args[args.length - 1]
+      }
     }
 
     props = {
