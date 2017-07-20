@@ -51,12 +51,16 @@
     </view>
 </template>
 <script>
-  var util = require('../libs/utils')
   import wepy from 'wepy'
-
-  export default class TopicList extends wepy.component {
+  var util = require('../libs/utils')
+  export default class NodeList extends wepy.component {
     data = {
       nodes: []
+    }
+
+    tdata = {
+      allNodes: [],
+      isFinished: false
     }
 
     events = {
@@ -71,12 +75,42 @@
 
     onLoad () {
       util.getRequestData({
-        url: this.apiUrl,
-        cb: (res) => {
-          this.topics = res.data
-          this.$apply()
+        url: 'https://www.v2ex.com/api/nodes/all.json',
+        cb: (d) => {
+          this.tdata.allNodes = d.data
+          if (d.data instanceof Array) {
+            var tmp = d.data.slice(0, 52)
+            this.nodes = tmp
+            this.$apply()
+          }
         }
       })
+    }
+
+    onReachBottom() {
+      console.log('onReachBottom~~~~')
+      if (this.data.isFinished) return
+      const amount = this.nodes.length
+      let ary = []
+      let index = 0
+      for (var i = 0, len = this.tdata.allNodes.length; i < 20; i++) {
+        index = amount + i
+        if (index >= len) {
+          // wx.showToast({
+          //   title: '已经加载完毕',
+          //   icon: 'success',
+          //   duration: 2000
+          // })
+          this.tdata.isFinished = true // 设置flag，不再触发上拉触底事件
+          break
+        }
+        ary.push(this.tdata.allNodes[index])
+      }
+      index = null
+      ary = this.nodes.concat(ary) // 有多少加多少
+      this.setData({ nodes: ary })
+      this.nodes = ary
+      this.$apply()
     }
   }
 </script>

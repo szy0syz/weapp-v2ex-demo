@@ -1,2 +1,3 @@
+@import "./../components/nodeList.wxss";
 @import "./../npm/wepy-com-toast/toast.wxss";
 
