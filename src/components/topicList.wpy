@@ -117,8 +117,10 @@
 
     methods = {
       toDetail (e) {
+        console.log(e.currentTarget.id)
+        console.log(this.detailPage)
         wepy.navigateTo({
-          url: this.detailPage + '?id=' + e.currentTarget.id
+          url: '/pages/detail?id=' + e.currentTarget.id
         })
       }
     }

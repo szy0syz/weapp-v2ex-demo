@@ -1,21 +1,17 @@
 <style>
 </style>
 <template>
-  <view class="container">
-    <button @tap="toast" size="big">toast</button>
-    <toast />
-  </view>
+  <topicDetail></topicDetail>
 </template>
 <script>
   import wepy from 'wepy'
-  import Toast from 'wepy-com-toast'
-
+  import TopicDetail from '../components/topicDetail'
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: 'test'
     }
     components = {
-      toast: Toast
+      topicDetail: TopicDetail
     }
 
     data = {

@@ -1,19 +1,36 @@
 
-  <view class="container">
-    <button bindtap="toast" size="big">toast</button>
-    
-    <view class="wetoast {{$toast$reveal ? 'wetoast_show' : ''}}">
-        <view class="wetoast__mask"/>
-        <view class="wetoast__bd" animation="{{$toast$animationData}}">
-            <block  wx:if="{{$toast$img}}">
-                <view class="wetoast__bd__img {{$toast$imgClassName || ''}}">
-                    <image class="wetoast__bd__img_desc" src="{{$toast$img}}" mode="{{$toast$imgMode || 'scaleToFill'}}"/>
-                </view>
-            </block>
-            <block  wx:if="{{$toast$title}}">
-                <view class="wetoast__bd__title {{$toast$titleClassName || ''}}">{{$toast$title}}</view>
-            </block>
-        </view>
+  
+<view class="container">
+  <view class="topic">
+    <view class="title">
+      <text>{{$topicDetail$topic_data.title}}</text>
     </view>
-
+    <view class="userInfo">
+      <image src="{{$topicDetail$topic_data.member.avatar_normal}}"/>
+      <text class="userInfo_username">{{$topicDetail$topic_data.member.username}}</text>
+      <text class="topic_created">  于 {{$topicDetail$topic_created}} 创建</text> 
+    </view>
+    <view class="content">
+      <text>{{$topicDetail$topic_data.content}}</text>
+    </view>
+    <view class="footerInfo">
+      <text>{{$topicDetail$topic_data.replies}}条回复</text>
+      <text>{{$topicDetail$topic_data.node.title}}</text>
+    </view>
   </view>
+
+  <scroll-view  wx:for="{{$topicDetail$topic_relies}}">
+    <view class="replies">
+      <view class="replies_info">
+        <view class="userInfo">
+          <image src="{{item.member.avatar_normal}}"/>
+          <text class="userInfo_username">{{item.member.username}}</text>
+          <text class="topic_created">  于 {{item.created}} 回复</text> 
+        </view>
+        <view class="rely_detal">
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
