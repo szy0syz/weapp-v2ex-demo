@@ -19,7 +19,7 @@
     </view>
   </view>
 
-  <scroll-view  wx:for="{{$topicDetail$topic_relies}}">
+  <scroll-view  wx:for="{{$topicDetail$topic_relies}}" wx:key="{{$topicDetail$id}}">
     <view class="replies">
       <view class="replies_info">
         <view class="userInfo">

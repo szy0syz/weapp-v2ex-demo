@@ -88,7 +88,7 @@
     </view>
   </view>
 
-  <scroll-view wx:for="{{topic_relies}}">
+  <scroll-view wx:for="{{topic_relies}}" wx:key="{{id}}">
     <view class="replies">
       <view class="replies_info">
         <view class="userInfo">
@@ -107,10 +107,9 @@
 <script>
   // var util = require('../libs/utils')
   import wepy from 'wepy'
-  var util = require('../libs/utils')
+  // var util = require('../libs/utils')
   export default class TopicList extends wepy.component {
     data = {
-      topic_id: null,
       topic_data: null,
       topic_relies: null,
       topic_created: ''
@@ -119,34 +118,46 @@
     events = {
     }
 
+    props = {
+      title: String,
+      topicid: String
+    }
+
     methods = {
     }
 
-    onLoad (options) {
-      console.dir(arguments)
-      this.topic_id = options.id
-      util.getRequestData({
-        url: 'https://www.v2ex.com/api/topics/show.json',
-        data: {id: this.topic_id},
-        cb: (d) => {
-          this.topic_data = d.data[0]
-          this.topic_created = util.formatUTC(d.data[0].created)
-          this.$apply()
-          if (this.topic_data !== null) {
-            util.getRequestData({
-              url: 'https://www.v2ex.com/api/replies/show.json',
-              data: {topic_id: this.topic_id},
-              cb: (d) => {
-                for (var i = 0, len = d.data.length; i < len; i++) {
-                  d.data[i].created = util.formatUTC(d.data[i].created)
-                }
-                this.topic_relies = d.data
-                this.$apply()
-              }
-            })
-          }
-        }
-      })
+    onShow() {
+      console.log('topicDetail page onShow')
+    }
+
+    onLoad () {
+      console.log('topicDetail com onLoad')
+      console.log('我是子组件的props.title ' + this.title)
+      console.log('我是子组件的props.topicid ' + this.topicid)
+      // 组件根本不知道自己要加载的文章id是多少，只能父组件传递进来
+      // this.topic_id = options.id
+      // util.getRequestData({
+      //   url: 'https://www.v2ex.com/api/topics/show.json',
+      //   data: {id: this.id},
+      //   cb: (d) => {
+      //     this.topic_data = d.data[0]
+      //     this.topic_created = util.formatUTC(d.data[0].created)
+      //     this.$apply()
+      //     if (this.topic_data !== null) {
+      //       util.getRequestData({
+      //         url: 'https://www.v2ex.com/api/replies/show.json',
+      //         data: {topic_id: this.topic_id},
+      //         cb: (d) => {
+      //           for (var i = 0, len = d.data.length; i < len; i++) {
+      //             d.data[i].created = util.formatUTC(d.data[i].created)
+      //           }
+      //           this.topic_relies = d.data
+      //           this.$apply()
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
     }
   }
 </script>

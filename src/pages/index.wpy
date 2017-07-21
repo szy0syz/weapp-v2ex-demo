@@ -38,6 +38,7 @@
       <button @tap="toast" size="mini">第三方组件</button>
       <button @tap="communicate" size="mini">组件通信</button>
       <button @tap="tap" size="mini">混合TAP事件</button>
+      <button @tap="testNav" size="mini">nav</button>
     </panel>
 
     <panel>
@@ -163,6 +164,11 @@
     }
 
     methods = {
+      testNav () {
+        this.$navigate({
+          url: '/pages/detail?id=44888884'
+        })
+      },
       plus () {
         this.mynum++
       },

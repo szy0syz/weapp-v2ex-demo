@@ -1,20 +1,21 @@
 <style>
 </style>
 <template>
-  <topicDetail></topicDetail>
+  <topicDetail :topicid="topicid" :title="title"></topicDetail>
 </template>
 <script>
   import wepy from 'wepy'
   import TopicDetail from '../components/topicDetail'
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
     }
     components = {
       topicDetail: TopicDetail
     }
 
     data = {
+      title: 'szytitle',
+      topicid: -1
     }
 
     methods = {
@@ -29,8 +30,14 @@
     events = {
     }
 
+    onShow() {
+      console.log('detail page onShow')
+    }
+
     onLoad(options) {
-      console.dir(options)
+      console.log('detail page onLoad')
+      this.topicid = options.id
+      console.log('页面上的this.topicid：' + this.topicid)
     }
   }
 </script>
