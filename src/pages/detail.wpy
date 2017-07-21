@@ -1,7 +1,7 @@
 <style>
 </style>
 <template>
-  <topicDetail :topicid="topicid" :title="title"></topicDetail>
+  <topicDetail :tid.sync="tid" :title="title"></topicDetail>
 </template>
 <script>
   import wepy from 'wepy'
@@ -9,13 +9,16 @@
   export default class Index extends wepy.page {
     config = {
     }
-    components = {
-      topicDetail: TopicDetail
-    }
 
     data = {
       title: 'szytitle',
-      topicid: -1
+      tid: -1
+    }
+
+    watch = {
+      id (newValue, oldValue) {
+        console.log(`tid value: ${oldValue} -> ${newValue}`)
+      }
     }
 
     methods = {
@@ -30,14 +33,14 @@
     events = {
     }
 
-    onShow() {
-      console.log('detail page onShow')
+    onLoad(options) {
+      console.log('detail page onLoad | options.id' + options.id)
+      this.tid = options.id
+      console.log('页面上的this.id：' + this.tid)
     }
 
-    onLoad(options) {
-      console.log('detail page onLoad')
-      this.topicid = options.id
-      console.log('页面上的this.topicid：' + this.topicid)
+    components = {
+      topicDetail: TopicDetail
     }
   }
 </script>

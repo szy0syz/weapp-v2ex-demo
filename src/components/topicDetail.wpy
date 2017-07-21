@@ -105,7 +105,6 @@
 </view>
 </template>
 <script>
-  // var util = require('../libs/utils')
   import wepy from 'wepy'
   // var util = require('../libs/utils')
   export default class TopicList extends wepy.component {
@@ -120,20 +119,17 @@
 
     props = {
       title: String,
-      topicid: String
+      tid: String
     }
 
     methods = {
     }
 
-    onShow() {
-      console.log('topicDetail page onShow')
-    }
-
     onLoad () {
       console.log('topicDetail com onLoad')
       console.log('我是子组件的props.title ' + this.title)
-      console.log('我是子组件的props.topicid ' + this.topicid)
+      console.log('我是子组件的props.tid ' + this.tid)
+      console.log('this.$parent.tid: ' + this.$parent.tid)
       // 组件根本不知道自己要加载的文章id是多少，只能父组件传递进来
       // this.topic_id = options.id
       // util.getRequestData({
