@@ -17,3 +17,24 @@ v2ex小程序demo
 - 2017-07-19: 本来计划这两天好好把wepy学完，结果开了party的培训睡眠会，悲剧。我现在真的在想，这个wepy有点复杂，一个小程序又没必要那么复杂啊~
 - 2017-07-22: 边看书边写demo时发现，有个wepy-one的demo很不错，果断按照原理升级自己的demo。总体感觉自己工程化这块做得不行。
 - 2017-07-22: 重构完毕
+
+## 结构
+
+.                           src目录结构
+├── api                     
+│   └── api.js             存放promisify后的api请求
+├── app.wpy                小程序配置项（pages、tabBar、window、middlewares）
+├── components             存放组件的文件夹
+│   ├── nodeList.wpy       展示节点列表的组件
+│   ├── topicDetail.wpy    展示主题详情的组件
+│   └── topicList.wpy      展示主题列表的组件
+├── index.template.html    
+├── libs
+│   └── utils.js           工具类
+└── pages
+    ├── detail.wpy         主题详情页
+    ├── hot.wpy            最热主题列表页
+    ├── latest.wpy         最新主题列表页
+    └── node.wpy           节点列表页
+
+4 directories, 11 files
