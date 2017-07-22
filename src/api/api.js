@@ -18,47 +18,23 @@ const wxRequest = async (params = {}, url) => {
     return res;
 };
 
-// Index
-const getVolById = (params) => wxRequest(params, host + '/api/hp/detail/' + params.query.id);
-const getVolIdList = (params) => wxRequest(params, host + '/api/hp/idlist/0');
-const getVolsByMonth = (params) => wxRequest(params, host + '/api/hp/bymonth/' + params.query.month);
-const getVolDetailById = (params) => wxRequest(params, host + '/api/hp/detail/' + params.query.id);
+// 获取最新主题
+const getLatest = () => wxRequest(null, host + '/api/topics/latest.json');
 
-// Reading
-const getCarousel = (params) => wxRequest(params, host + '/api/reading/carousel');
-const getLastArticles = (params) => wxRequest(params, host + '/api/reading/index');
-const getEssayById = (params) => wxRequest(params, host + '/api/essay/' + params.query.id);
-const getSerialById = (params) => wxRequest(params, host + '/api/serialcontent/' + params.query.id);
-const getQuestionById = (params) => wxRequest(params, host + '/api/question/' + params.query.id);
-const getArticlesByMonth = (params) => {
-  wxRequest(params, host + '/api/' + params.query.type + '/bymonth/' + params.query.month)
-};
+// 获取最热主题
+const getHot = () => wxRequest(null, host + '/api/topics/hot.json');
 
-// Music
-const getMusicIdList = (params) => wxRequest(params, host + '/api/music/idlist/0');
-const getMusicsByMonth = (params) => wxRequest(params, host + '/api/music/bymonth/' + params.query.month);
-const getMusicDetailById = (params) => wxRequest(params, host + '/api/music/detail/' + params.query.id);
+// 获取所有节点
+const getNodes = () => wxRequest(null, host + '/api/nodes/all.json');
 
-// Movie
-const getMovieListById = (params) => wxRequest(params, host + '/api/movie/list/' + params.query.id);
-const getMovieDetailById = (params) => wxRequest(params, host + '/api/movie/detail/' + params.query.id);
-const getMovieStoryById = (params) => wxRequest(params, host + '/api/movie/' + params.query.id + '/story/1/0');
+// 获取主题详情 params --> {id: 444}
+const getDetail = (params) => wxRequest(params, host + '/api/topics/show.json');
+
+// 获取主题回帖 params --> {topic_id: 444}
+const getReplies = (params) => wxRequest(params, host + '/api/replies/show.json');
 
 module.exports = {
-  getVolById,
-  getVolIdList,
-  getVolsByMonth,
-  getVolDetailById,
-  getCarousel,
-  getLastArticles,
-  getEssayById,
-  getSerialById,
-  getQuestionById,
-  getArticlesByMonth,
-  getMusicIdList,
-  getMusicsByMonth,
-  getMusicDetailById,
-  getMovieListById,
-  getMovieDetailById,
-  getMovieStoryById
+  getLatest,
+  getHot,
+  getNodes
 };
