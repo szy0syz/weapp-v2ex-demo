@@ -1,16 +1,20 @@
 import wepy from 'wepy';
 
 const host = 'https://www.v2ex.com';
-const wxRequest = (params = {}, url) => {
-  console.log('正在调用的url是: ' + url)
-  return new Promise(async (resolve, reject) => {
-    // let res = await wepy.request({
-    //   url: url
-    // });
-    setTimeout(() => {
-      resolve('哈哈哈');
+const wxRequest = async (params = {}, url) => {
+    // 因为此文件是js，故可用wx混用
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading'
     });
-  })
+    console.log('正在调用的url是: ' + url);
+    let res = await wepy.request({
+        url: url,
+        method: params.method || 'GET',
+        data: params.data || {}
+    });
+    wx.hideToast();
+    return res;
 };
 
 // 获取最新主题
