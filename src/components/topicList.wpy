@@ -95,24 +95,23 @@
         </view>
       </view>
     </view>
-
+    <button @tap="test" size="mini">test</button>
   </view>  
 </template>
 <script>
-  var util = require('../libs/utils')
   import wepy from 'wepy'
 
   export default class TopicList extends wepy.component {
     data = {
-      topics: []
     }
 
     events = {
     }
 
     props = {
-      detailPage: String,
-      apiUrl: String
+      topics: Array,
+      obj: Object,
+      str: String
     }
 
     methods = {
@@ -120,18 +119,18 @@
         wepy.navigateTo({
           url: '/pages/detail?id=' + e.currentTarget.id
         })
+      },
+      test () {
+        console.dir(this.topics)
+        console.dir(this.$parent.topics)
       }
     }
 
     onLoad () {
-      console.dir(this)
-      util.getRequestData({
-        url: this.apiUrl,
-        cb: (res) => {
-          this.topics = res.data
-          this.$apply()
-        }
-      })
+      console.log('我在组件topicList里')
+      console.dir(this.topics)
+      console.dir(this.obj)
+      console.log(this.str)
     }
   }
 </script>

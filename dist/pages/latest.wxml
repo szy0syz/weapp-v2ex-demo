@@ -18,7 +18,7 @@
         </view>
       </view>
     </view>
-
+    <button bindtap="$list$test" size="mini">test</button>
   </view>  
 
   </view>
