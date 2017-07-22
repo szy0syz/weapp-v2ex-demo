@@ -11,6 +11,7 @@
   import api from '../api/api'
   export default class Index extends wepy.page {
     config = {
+      navigationBarTitleText: '最新主题列表'
     }
     components = {
       list: TopicList

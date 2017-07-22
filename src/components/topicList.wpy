@@ -121,10 +121,6 @@
     }
 
     onLoad () {
-      console.log('我在组件topicList里')
-      console.dir(this.topics)
-      console.dir(this.obj)
-      console.log(this.str)
     }
   }
 </script>

@@ -41,19 +41,19 @@
 <template>
     <view class="mypage">
     <scroll-view style="height:100%;">
-        <view class="container">
+      <view class="container">
         <view class="node" wx:for="{{nodes}}" wx:key="id">
             <text class="node_title">{{item.title}}</text>
             <text class="node_sum">主题总数{{item.topics}}</text>
         </view>
-        </view>
+      </view>
     </scroll-view>
     </view>
 </template>
 <script>
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
-  var util = require('../libs/utils')
+  // var util = require('../libs/utils')
   export default class NodeList extends wepy.component {
     data = {
       nodes: []
@@ -64,7 +64,6 @@
     }
 
     tdata = {
-      allNodes: [],
       isFinished: false
     }
 
@@ -76,14 +75,14 @@
         let ary = []
         let index = 0
         let loadNum = args[0]
-        for (var i = 0, len = this.tdata.allNodes.length; i < loadNum; i++) {
+        for (var i = 0, len = this.allNodes.length; i < loadNum; i++) {
           index = amount + i
           if (index >= len) {
             console.log('全部nodes加载完毕')
             this.$emit('noReach')
             break
           }
-          ary.push(this.tdata.allNodes[index])
+          ary.push(this.allNodes[index])
         }
         index = null
         ary = this.nodes.concat(ary) // 有多少加多少
@@ -93,24 +92,27 @@
     }
 
     props = {
-      apiUrl: String
+      allNodes: Array
     }
 
     methods = {
+      testNav() {
+        console.dir(this.allNodes)
+        console.dir(this.$parent.allNodes)
+        this.nodes = this.allNodes
+      }
+    }
+
+    watch = {
+      allNodes (newValue, oldValue) {
+        // 因为父附件和子组件之间用了动态绑定属性，所以当父组件异步获取到了数据后子组件的props会发生改变
+        // 此时就会被watcher监控到，则可以利用这点完成业务
+        this.nodes = this.allNodes.slice(0, 100)
+        this.$apply()
+      }
     }
 
     onLoad () {
-      util.getRequestData({
-        url: 'https://www.v2ex.com/api/nodes/all.json',
-        cb: (d) => {
-          this.tdata.allNodes = d.data
-          if (d.data instanceof Array) {
-            var tmp = d.data.slice(0, 52)
-            this.nodes = tmp
-            this.$apply()
-          }
-        }
-      })
     }
   }
 </script>

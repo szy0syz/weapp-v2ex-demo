@@ -13,12 +13,13 @@ const wxRequest = (params = {}, url) => {
   }
   console.log('正在调用的url是: ' + url)
   return new Promise(async (resolve, reject) => {
-    let res = await wepy.request({
-        url: url
-    });
-    setTimeout(() => {
-      resolve(res);
-    });
+    let res = await wepy.request({url: url});
+    if (res) {
+      resolve(res)
+      if (params.cb && typeof params.cb === 'function') {
+        params.cb()
+      }
+    }
   })
 };
 

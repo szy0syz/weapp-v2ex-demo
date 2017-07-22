@@ -3,12 +3,12 @@
     
     <view class="mypage">
     <scroll-view style="height:100%;">
-        <view class="container">
+      <view class="container">
         <view class="node"  wx:for="{{$nodeList$nodes}}" wx:key="id">
             <text class="node_title">{{item.title}}</text>
             <text class="node_sum">主题总数{{item.topics}}</text>
         </view>
-        </view>
+      </view>
     </scroll-view>
     </view>
 

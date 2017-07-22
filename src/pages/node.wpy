@@ -2,7 +2,7 @@
 </style>
 <template>
   <view>
-    <nodeList></nodeList>
+    <nodeList :allNodes.sync="allNodes"></nodeList>
   </view>
   <toast />
 </template>
@@ -10,9 +10,10 @@
   import wepy from 'wepy'
   import Toast from 'wepy-com-toast'
   import NodeList from '../components/nodeList'
+  import api from '../api/api'
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '所有节点列表'
     }
     components = {
       toast: Toast,
@@ -20,6 +21,7 @@
     }
 
     data = {
+      allNodes: []
     }
 
     tdata = {
@@ -48,7 +50,16 @@
       }
     }
 
+    async getAllNodes() {
+      let res = await api.getNodes({
+        cb: this.loadingNodes
+      })
+      this.allNodes = res.data
+      this.$apply()
+    }
+
     onLoad() {
+      this.getAllNodes()
     }
 
     onReachBottom() {
