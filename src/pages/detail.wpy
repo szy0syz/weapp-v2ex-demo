@@ -1,24 +1,18 @@
 <style>
 </style>
 <template>
-  <topicDetail :tid.sync="tid" :title="title"></topicDetail>
+  <topicDetail :tid.sync="tid"></topicDetail>
 </template>
 <script>
   import wepy from 'wepy'
   import TopicDetail from '../components/topicDetail'
   export default class Index extends wepy.page {
     config = {
+      navigationBarTitleText: '主题详情'
     }
 
     data = {
-      title: 'szytitle',
       tid: -1
-    }
-
-    watch = {
-      id (newValue, oldValue) {
-        console.log(`tid value: ${oldValue} -> ${newValue}`)
-      }
     }
 
     methods = {
@@ -30,13 +24,8 @@
       }
     }
 
-    events = {
-    }
-
     onLoad(options) {
-      console.log('detail page onLoad | options.id' + options.id)
       this.tid = options.id
-      console.log('页面上的this.id：' + this.tid)
     }
 
     components = {

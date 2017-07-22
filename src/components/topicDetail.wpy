@@ -106,7 +106,8 @@
 </template>
 <script>
   import wepy from 'wepy'
-  // var util = require('../libs/utils')
+  const util = require('../libs/utils')
+  import api from '../api/api'
   export default class TopicList extends wepy.component {
     data = {
       topic_data: null,
@@ -118,42 +119,33 @@
     }
 
     props = {
-      title: String,
       tid: String
+    }
+
+    watch = {
+      tid (newValue, oldValue) {
+        this.loadTopic(newValue)
+      }
     }
 
     methods = {
     }
 
     onLoad () {
+      // 记住：子组件的onload会在父页面onload前执行~靠~
       console.log('topicDetail com onLoad')
-      console.log('我是子组件的props.title ' + this.title)
-      console.log('我是子组件的props.tid ' + this.tid)
-      console.log('this.$parent.tid: ' + this.$parent.tid)
-      // 组件根本不知道自己要加载的文章id是多少，只能父组件传递进来
-      // this.topic_id = options.id
-      // util.getRequestData({
-      //   url: 'https://www.v2ex.com/api/topics/show.json',
-      //   data: {id: this.id},
-      //   cb: (d) => {
-      //     this.topic_data = d.data[0]
-      //     this.topic_created = util.formatUTC(d.data[0].created)
-      //     this.$apply()
-      //     if (this.topic_data !== null) {
-      //       util.getRequestData({
-      //         url: 'https://www.v2ex.com/api/replies/show.json',
-      //         data: {topic_id: this.topic_id},
-      //         cb: (d) => {
-      //           for (var i = 0, len = d.data.length; i < len; i++) {
-      //             d.data[i].created = util.formatUTC(d.data[i].created)
-      //           }
-      //           this.topic_relies = d.data
-      //           this.$apply()
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
+    }
+
+    async loadTopic(tid) {
+      let t = await api.getDetail({query: { id: tid }})
+      let r = await api.getReplies({query: { topic_id: tid }})
+      this.topic_data = t.data[0]
+      this.topic_created = util.formatUTC(t.data[0].created)
+      for (var i = 0, len = r.data.length; i < len; i++) {
+        r.data[i].created = util.formatUTC(r.data[i].created)
+      }
+      this.topic_relies = r.data
+      this.$apply() // 因为是异步，脏数据要处理
     }
   }
 </script>
