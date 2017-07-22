@@ -28,18 +28,10 @@ const getDetail = (params) => wxRequest(params, host + '/api/topics/show.json')
 // 获取主题回帖 params --> {topic_id: 444}
 const getReplies = (params) => wxRequest(params, host + '/api/replies/show.json')
 
-const getVolIdList = (params) => wxRequest(params, 'http://v3.wufazhuce.com:8000/api/hp/idlist/0');
-const getCarousel = (params) => wxRequest(params, 'http://v3.wufazhuce.com:8000/api/reading/carousel');
-const getLastArticles = (params) => wxRequest(params, 'http://v3.wufazhuce.com:8000/api/reading/index');
-
 module.exports = {
   getLatest,
   getHot,
   getNodes,
   getDetail,
-  getReplies,
-  getVolIdList,
-  getCarousel,
-  getLastArticles
-
+  getReplies
 };

@@ -167,7 +167,7 @@
 
     methods = {
       async testNav () {
-        let res = await api.getHot()
+        let res = await api.getLatest()
         console.dir('**************')
         console.dir(res)
         // this.$navigate({

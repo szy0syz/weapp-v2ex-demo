@@ -58,7 +58,9 @@ export default class extends wepy.app {
 
   constructor () {
     super()
+    // 中间件：修复小程序请求并发问题
     this.use('requestfix')
+    // 中间件：使用wepy.xxx(request)的方式请求小程序原生API都将Promise化
     this.use('promisify')
   }
 
