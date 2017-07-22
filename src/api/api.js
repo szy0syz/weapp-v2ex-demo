@@ -21,7 +21,18 @@ const wxRequest = (params = {}, url) => {
       }
     }
   })
-};
+  // wx.showToast({
+  //     title: '加载中',
+  //     icon: 'loading'
+  //   });
+  //   console.log('正在调用的url是: ' + url);
+  //   let res = await wepy.request({
+  //       url: url,
+  //       method: params.method || 'GET',
+  //       data: params.data || {}
+  //   });
+  //   wx.hideToast();
+}
 
 // 获取最新主题
 const getLatest = (p) => wxRequest(p, host + '/api/topics/latest.json')
