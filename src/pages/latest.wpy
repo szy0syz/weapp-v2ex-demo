@@ -2,7 +2,7 @@
 </style>
 <template>
   <view class="container">
-    <list :topics.sync="topics" :obj="obj" str="szyyyy"></list>
+    <list :topics.sync="topics"></list>
   </view>
 </template>
 <script>
@@ -11,15 +11,13 @@
   import api from '../api/api'
   export default class Index extends wepy.page {
     config = {
-      // navigationBarTitleText: 'test'
     }
     components = {
       list: TopicList
     }
 
     data = {
-      topics: [1, 2, 3],
-      obj: {name: 'szy'}
+      topics: []
     }
 
     methods = {
@@ -28,13 +26,15 @@
     events = {
     }
 
-    async onLoad() {
-      console.dir(this.topics)
-      this.topics = await api.getLatest()
-      this.topics = this.topics.data
+    onLoad() {
+      this.reloadTopics()
+    }
+
+    // ↓↓↓↓↓↓自定义函数↓↓↓↓↓↓↓↓
+    async reloadTopics() {
+      let res = await api.getLatest()
+      this.topics = res.data
       this.$apply()
-      console.log('我就是取得的数据： ')
-      console.dir(this.topics)
     }
   }
 </script>

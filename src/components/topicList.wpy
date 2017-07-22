@@ -95,7 +95,7 @@
         </view>
       </view>
     </view>
-    <button @tap="test" size="mini">test</button>
+
   </view>  
 </template>
 <script>
@@ -109,9 +109,7 @@
     }
 
     props = {
-      topics: Array,
-      obj: Object,
-      str: String
+      topics: Array
     }
 
     methods = {
@@ -119,10 +117,6 @@
         wepy.navigateTo({
           url: '/pages/detail?id=' + e.currentTarget.id
         })
-      },
-      test () {
-        console.dir(this.topics)
-        console.dir(this.$parent.topics)
       }
     }
 
