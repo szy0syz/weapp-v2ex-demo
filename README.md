@@ -20,6 +20,7 @@ v2ex小程序demo
 
 ## 结构
 
+```bash
 .                           src目录结构
 ├── api                     
 │   └── api.js             存放promisify后的api请求
@@ -38,3 +39,4 @@ v2ex小程序demo
     └── node.wpy           节点列表页
 
 4 directories, 11 files
+```
